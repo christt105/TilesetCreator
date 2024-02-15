@@ -71,6 +71,3 @@ jobs:
         run: |
           echo $GITHUB_REF_NAME
           butler push web $ITCH_USER/$ITCH_GAME:html5 --userversion $GITHUB_REF_NAME
-          butler push windows $ITCH_USER/$ITCH_GAME:windows --userversion $GITHUB_REF_NAME
-          butler push linux $ITCH_USER/$ITCH_GAME:linux --userversion $GITHUB_REF_NAME
-          butler push mac $ITCH_USER/$ITCH_GAME:mac --userversion $GITHUB_REF_NAME
