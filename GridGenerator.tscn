@@ -1,0 +1,205 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvtv3jhdbxvlv"]
+
+[ext_resource type="Script" path="res://GridGenerator.gd" id="1_oif47"]
+[ext_resource type="Script" path="res://SubViewportCell.gd" id="2_hj2je"]
+[ext_resource type="Script" path="res://Cell.gd" id="2_l4wa7"]
+[ext_resource type="Script" path="res://Configuration.gd" id="3_mgl7h"]
+[ext_resource type="PackedScene" uid="uid://b8h4svm0imtvy" path="res://Vector2Input.tscn" id="3_r61hs"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_de2co"]
+viewport_path = NodePath("SubViewport")
+
+[node name="GridGenerator" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oif47")
+tile_size = Vector2i(32, 32)
+font_size = 20.0
+cell_width = 2
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(256, 320)
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="SubViewport/ColorRect"]
+layout_mode = 0
+offset_right = 540.0
+offset_bottom = 132.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 8
+
+[node name="SubViewportCell" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+msaa_2d = 3
+msaa_3d = 3
+screen_space_aa = 1
+size = Vector2i(32, 32)
+render_target_update_mode = 4
+script = ExtResource("2_hj2je")
+
+[node name="Cell" type="Node2D" parent="SubViewportCell"]
+script = ExtResource("2_l4wa7")
+size = Vector2i(32, 32)
+width = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/ScrollContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("ViewportTexture_de2co")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="Configuration" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+script = ExtResource("3_mgl7h")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Configuration"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="VBoxContainer" parent="HBoxContainer/Configuration/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Sizes" type="HBoxContainer" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer"]
+custom_minimum_size = Vector2(0, 110.345)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="GridSizeVector2Input" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer/Sizes" instance=ExtResource("3_r61hs")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer/Sizes/GridSizeVector2Input/VBoxContainer" index="0"]
+text = "Grid Size"
+
+[node name="X" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer/Sizes/GridSizeVector2Input/VBoxContainer/HBoxContainer" index="1"]
+text = "8"
+
+[node name="Y" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer/Sizes/GridSizeVector2Input/VBoxContainer/HBoxContainer2" index="1"]
+text = "10"
+
+[node name="CellSizeVector2Input" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer/Sizes" instance=ExtResource("3_r61hs")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer/Sizes/CellSizeVector2Input/VBoxContainer" index="0"]
+text = "Cell Size"
+
+[node name="X" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer/Sizes/CellSizeVector2Input/VBoxContainer/HBoxContainer" index="1"]
+text = "32"
+
+[node name="Y" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer/Sizes/CellSizeVector2Input/VBoxContainer/HBoxContainer2" index="1"]
+text = "32"
+
+[node name="BackgroundColor" type="HBoxContainer" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer/BackgroundColor"]
+layout_mode = 2
+text = "Background Color"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer/BackgroundColor"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 1, 1, 1)
+
+[node name="BorderColor" type="HBoxContainer" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer/BorderColor"]
+layout_mode = 2
+text = "Border Color"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer/BorderColor"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BorderWidth" type="HBoxContainer" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer/BorderWidth"]
+layout_mode = 2
+text = "Border With"
+
+[node name="ColorPickerButton" type="LineEdit" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer/BorderWidth"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "2"
+virtual_keyboard_type = 2
+
+[node name="FontColor" type="HBoxContainer" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer/FontColor"]
+layout_mode = 2
+text = "Font Color"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer/FontColor"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FontSize" type="HBoxContainer" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer/FontSize"]
+layout_mode = 2
+text = "Font Size"
+
+[node name="ColorPickerButton" type="LineEdit" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer/FontSize"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "20"
+virtual_keyboard_type = 2
+
+[node name="CreateButton" type="Button" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Create"
+
+[node name="DownloadButton" type="Button" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Download Tileset"
+
+[editable path="HBoxContainer/Configuration/MarginContainer/PanelContainer/Sizes/GridSizeVector2Input"]
+[editable path="HBoxContainer/Configuration/MarginContainer/PanelContainer/Sizes/CellSizeVector2Input"]
