@@ -56,6 +56,15 @@ func create_texture():
 
 
 func save_image(path: String):
+	#save_local(path)
+	save_web(path)
+	
+
+func save_web(path:  String) -> void:
+	var buffer := subviewport.get_texture().get_image().save_png_to_buffer()
+	JavaScriptBridge.download_buffer(buffer, "Tileset.png")
+
+func save_local(path: String) -> void:
 	var err = subviewport.get_texture().get_image().save_png(path)
 	if err != OK:
 		push_error(error_string(err))
