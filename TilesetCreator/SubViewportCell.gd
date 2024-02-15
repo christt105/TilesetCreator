@@ -8,4 +8,5 @@ var cell_size: Vector2i:
 	get:
 		return cell.size
 	set(value):
+		size = value
 		cell.size = value

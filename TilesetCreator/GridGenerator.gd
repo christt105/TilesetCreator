@@ -48,11 +48,9 @@ func create_texture():
 			label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 			label.add_theme_color_override("font_color", font_color)
 			label.add_theme_font_size_override("font_size", font_size)
-			label.owner = owner
 			texture_rect.add_child(label)
 	
 			label.text = var_to_str(i)
-			texture_rect.owner = owner
 			grid_container.add_child(texture_rect)
 			i = i + 1
 
