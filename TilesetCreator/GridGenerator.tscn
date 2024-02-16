@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvtv3jhdbxvlv"]
+[gd_scene load_steps=8 format=3 uid="uid://dvtv3jhdbxvlv"]
 
 [ext_resource type="Script" path="res://GridGenerator.gd" id="1_oif47"]
 [ext_resource type="Script" path="res://SubViewportCell.gd" id="2_hj2je"]
 [ext_resource type="Script" path="res://Cell.gd" id="2_l4wa7"]
 [ext_resource type="Script" path="res://Configuration.gd" id="3_mgl7h"]
 [ext_resource type="PackedScene" uid="uid://b8h4svm0imtvy" path="res://Vector2Input.tscn" id="3_r61hs"]
+[ext_resource type="Script" path="res://ColorPickerButton.gd" id="6_y8vwx"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_de2co"]
 viewport_path = NodePath("SubViewport")
@@ -75,7 +76,7 @@ expand_mode = 5
 stretch_mode = 4
 
 [node name="Configuration" type="Control" parent="HBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 script = ExtResource("3_mgl7h")
 
@@ -137,6 +138,7 @@ text = "Background Color"
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(1, 1, 1, 1)
+script = ExtResource("6_y8vwx")
 
 [node name="BorderColor" type="HBoxContainer" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer"]
 layout_mode = 2
@@ -148,6 +150,7 @@ text = "Border Color"
 [node name="ColorPickerButton" type="ColorPickerButton" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer/BorderColor"]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("6_y8vwx")
 
 [node name="BorderWidth" type="HBoxContainer" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer"]
 layout_mode = 2
@@ -172,6 +175,7 @@ text = "Font Color"
 [node name="ColorPickerButton" type="ColorPickerButton" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer/FontColor"]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("6_y8vwx")
 
 [node name="FontSize" type="HBoxContainer" parent="HBoxContainer/Configuration/MarginContainer/PanelContainer"]
 layout_mode = 2
