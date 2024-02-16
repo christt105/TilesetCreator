@@ -5,4 +5,6 @@
 
 Example of Tilesets to Create:
 
-![Tileset](./TilesetCreator/Image.png)
+![Tileset](./docs/Tileset.png)
+![Tileset2](./docs/Tileset2.png)
+![Grid](./docs/Grid.png)
