@@ -2,8 +2,8 @@ name: "godot-ci build-and-release"
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
 
 env:
   GODOT_VERSION: 4.2.1

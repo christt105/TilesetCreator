@@ -12,8 +12,5 @@
 data_*/
 mono_crash.*.json
 
-Builds/*.js
-Builds/*.html
-Builds/*.pck
-Builds/*.png
-Builds/*.wasm
+Builds/*
+!Builds/server.py
