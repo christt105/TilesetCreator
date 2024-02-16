@@ -22,6 +22,7 @@ font_size = 20.0
 cell_width = 2
 
 [node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
 handle_input_locally = false
 size = Vector2i(512, 640)
 

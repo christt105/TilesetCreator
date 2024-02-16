@@ -56,8 +56,10 @@ func create_texture():
 
 
 func save_image(path: String):
-	#save_local(path)
-	save_web(path)
+	if OS.get_name() == "Web":
+		save_web(path)
+	else:
+		save_local(path)
 	
 
 func save_web(path:  String) -> void:
